@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>  
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" >
+	
+		<property name="driverClass"><value>com.mysql.jdbc.Driver</value></property>
+		<property name="jdbcUrl"><value>jdbc:mysql://localhost:3306/osbank</value></property>
+		<property name="user"><value>root</value></property>
+		<property name="password"><value>root</value></property>
+		<!-- <property name="password"><value>hjhaohj</value></property> -->
+	
+ 
+ <property name="minPoolSize" value="50" />
+		<property name="maxPoolSize" value="200" />
+		<property name="maxIdleTime" value="180" />
+		<property name="acquireIncrement" value="1" />
+		<property name="maxStatements" value="200" />
+		<property name="initialPoolSize" value="50" />
+		<property name="idleConnectionTestPeriod" value="6" />
+		<property name="acquireRetryAttempts" value="3" />
+		<property name="testConnectionOnCheckout" value="false" />
+	</bean>	
+</beans>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form id="saveReportForm" action="/osbank/UploadHandleServlet" enctype="multipart/form-data" method="post" onsubmit="return saveReport();" >
+        
+            
+     
+         
+        
+         
+         <input type="hidden" name="stuNo" value="21041333334" />
+          <input type="hidden" name="exType" value="ex_calc" />
+           <input type="hidden" name="exId" value="3" />
+          <input type="text" value="xxx" name="temperature" />
+          上传文件1：<input type="file" name="file1"><br/>
+          <!--  <input type="submit" value="提交"> -->
+     </form>
+     <button>提交</button>
+     
+     <script>
+     document.querySelector("button").onclick=function(){
+    	// alert("submit");
+    	 document.querySelector("form").submit();
+     } 
+     
+     function saveReport() { 
+    	// jquery 表单提交 
+    	$("#showDataForm").ajaxSubmit(function(message) { 
+    	// 对于表单提交成功后处理，message为提交页面saveReport.htm的返回内容 
+    	}); 
+
+    	return false; // 必须返回false，否则表单会自己再做一次提交操作，并且页面跳转 
+    	} 
+     </script>
+</body>
+</html>

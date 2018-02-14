@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont-grade.css" />
+
+		<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+				height: 100%;
+			}
+			
+			.mui-col-xs-3,
+			.mui-control-content {
+				overflow-y: auto;
+				height: 100%;
+			}
+			
+			.mui-segmented-control .mui-control-item {
+				line-height: 50px;
+				width: 100%;
+			}
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				background-color: #fff;
+			}
+			
+			.iconfont {
+				float: right;
+			}
+			
+			.icon-duigou,
+			.icon-clock {
+				color: green;
+			}
+			
+			li {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			
+			.ex-type {
+				color: white;
+				padding: 2px;
+				background-color: lightskyblue;
+				border-radius: 2px;
+			}
+		</style>
+		<script src="js/exList.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--<script src="js/ExJsonForTest.js" type="text/javascript" charset="utf-8"></script>-->
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">批阅</h1>
+		</header>
+		<div class="mui-content mui-row mui-fullscreen">
+			<div class="mui-col-xs-3">
+				<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+				</div>
+			</div>
+			<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			var controls = document.getElementById("segmentedControls");
+			var contents = document.getElementById("segmentedControlContents");
+			var html = [];
+			var i = 0,
+				j = 1,
+				m = exList.length; //左侧选项卡数量+1
+			//n = 21; //每个选项卡列表数量+1
+			for(; i < m; i++) {
+				html.push('<a class="mui-control-item" href="#content' + (i + 1) + '">作业' + (i + 1) + '</a>');
+			}
+			controls.innerHTML = html.join('');
+			html = [];
+
+			var iconClass = ["icon-yuanquan", "icon-clock", "icon-duigou"];
+			//console.log(iconClass[2]);
+			//var exJsons;
+
+			var exJsonsList = [];
+			//递归ajax 获取所有作业		
+			var curIndex = 0; //退出递归的条件变量
+			function newRequest() {
+				if(curIndex >= exList.length) { //所有作业的exJsons请求完毕
+					console.log("递归获取exJsonsList成功！")
+						//	fillRightDiv();
+					return;
+				}
+
+				var exJson = exList[curIndex];
+
+				var exJstr = JSON.stringify(exJson);
+				var postUrl = "/osbank/AskExServlet?data=" + exJstr;
+				xhr(postUrl,
+					true,
+					function(resJson) {
+						exJsonsList[curIndex] = resJson.data;
+
+						fillRightDiv(curIndex);
+						curIndex++;
+						newRequest();
+					},
+					function() {
+						console.log("access task" + curIndex + "fail");
+					});
+			}
+
+			newRequest();
+
+			function fillRightDiv(ind) {
+
+				var contentId = 1;
+				//for(i = 1; i <= m; i++) {
+				/*var html = [];
+					html.push('<div id="content' + i + '" class="mui-control-content"><ul class="mui-table-view">');
+*/
+				var exJsons = exJsonsList[ind];
+				var exs = [],
+					exStatus = [],
+					num = 0; //记录简答计算题的总数量
+				for(var j = 0; j < exJsons.length; j++) {
+					var ex = exJsons[j];
+					if(ex.type == "ex_sa") {
+						exs.push(ex);
+						num++;
+					} else if(ex.type == "ex_calc") {
+						exs.push(ex);
+						num++;
+					}
+
+				}
+
+				var nowInd = 0;
+
+				function getStatus() {
+					if(nowInd >= num) { //所有status请求完毕
+						console.log("task" + ind + "递归获取status成功！");
+						//fillRightDiv();
+						var lis = [];
+						var html = [];
+						var div = document.createElement('div');
+						div.id = ("content" + (ind + 1));
+						div.className = "mui-control-content";
+
+						var ul = document.createElement('ul');
+						ul.className = "mui-table-view";
+						/*html.push('<div id="content' + (ind+1)+ '" class="mui-control-content"><ul class="mui-table-view">');
+						 */
+						for(var k = 0; k < num; k++) {
+							/*html.push('<li class="mui-table-view-cell">' +
+								'<span class="ex-type">' + (exs[k].type == "ex_sa" ? "简答" : "计算") + '</span>' + exs[k].stem +
+								'<span class="iconfont ' + iconClass[exStatus[k]] + '"></span>' +
+								'</li>');*/
+							var li = document.createElement('li');
+							li.className = "mui-table-view-cell";
+							li.innerHTML = '<span class="ex-type">' + (exs[k].type == "ex_sa" ? "简答" : "计算") + '</span>' + exs[k].stem +
+								'<span class="iconfont ' + iconClass[exStatus[k]] + '"></span>';
+                          var params =JSON.stringify(exs[k]);
+                            li.id=params;
+							if(exStatus[k] != 2) {
+								li.onclick = function() {
+                                     console.log(this.id);	
+                                   // var params_c=params;
+									window.location.href = encodeURI("subGrade.html?" +  this.id);
+								}
+							}
+							lis.push(li);
+							ul.appendChild(li);
+						}
+
+						/*html.push('</ul></div>');
+                            
+							contents.innerHTML += html.join('');*/
+						div.appendChild(ul);
+						contents.appendChild(div);
+						//默认选中第一个
+						controls.querySelector('.mui-control-item').classList.add('mui-active');
+						contents.querySelector('.mui-control-content').classList.add('mui-active');
+
+						return;
+					}
+
+					var postUrl = "/osbank/GetGradeStatus?exType=" + exs[nowInd].type + "&exId=" + exs[nowInd].id;
+					xhr(
+						postUrl,
+						false,
+						function(resText) {
+							exStatus[nowInd] = parseInt(resText);
+							nowInd++;
+							getStatus();
+						},
+						function() {
+							console.log("access task" + i + "status" + nowInd + "fail");
+						}
+					);
+				}
+
+				getStatus();
+
+			}
+
+			/*function getGradeStatus(exType, exId) {
+				return 1;
+			}*/
+		</script>
+
+	</body>
+
+</html>

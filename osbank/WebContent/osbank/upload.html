@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery.form.min.js"></script>
+</head>
+<body>
+	<form id="my_form" action="/osbank/UploadHandleServlet"
+		enctype="multipart/form-data" method="post" onsubmit="return false;">
+		<input type="hidden" name="stuNo" value="21041333334" /> <input
+			type="hidden" name="exType" value="ex_calc" /> <input type="hidden"
+			name="exId" value="3" /> <input type="text" value="xxx"
+			name="temperature" /> 上传文件1：<input type="file" name="file1"><br />
+		<!--  <input type="submit" value="提交"> -->
+	</form>
+	<button>提交</button>
+
+	<script>
+		document.querySelector("button").onclick = function() {
+			// alert("submit");
+			//document.querySelector("form").submit();
+			/* function showResponse() {
+				alert('提交成功');
+			}
+			var options = {
+					success : showResponse
+				}; */
+			$('form').ajaxSubmit();
+			return false;
+		}
+		
+		/*  $(function(){ 
+			
+			var options = {
+					success : showResponse
+				};
+			$('#my_form').submit(function() {
+				alert("submit");
+				$(this).ajaxSubmit(options);
+				
+				return false;
+			});
+			function showResponse() {
+				alert('提交成功');
+			}
+		});  */
+	
+		/*  $('form').submit(function (event) {
+		       event.preventDefault();
+		       var form = $(this);
+
+		       if (!form.hasClass('fupload')) {
+		         //普通表单
+		         $.ajax({
+		           type: form.attr('method'),
+		           url: form.attr('action'),
+		           data: form.serialize()
+		         }).success(function () {
+		           //成功提交
+		         }).fail(function (jqXHR, textStatus, errorThrown) {
+		           //错误信息
+		         });
+		       }
+		       else {
+		         // mulitipart form,如文件上传类
+		         var formData = new FormData(this);
+		         $.ajax({
+		           type: form.attr('method'),
+		           url: form.attr('action'),
+		           data: formData,
+		           mimeType: "multipart/form-data",
+		           contentType: false,
+		           cache: false,
+		           processData: false
+		         }).success(function () {
+		           //成功提交
+		         }).fail(function (jqXHR, textStatus, errorThrown) {
+		           //错误信息
+		         });
+		       };
+		     }); */
+	</script>
+</body>
+</html>

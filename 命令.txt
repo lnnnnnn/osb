@@ -1,0 +1,4 @@
+C:\Users\dell\workspace\osbank\src>java -Djava.ext.dirs=..\WebContent\WEB-INF\lib edu.nuist.osbank.service.ExSyncService
+
+
+C:\Users\dell\workspace\osbank>javac -encoding utf-8 -cp src -Djava.ext.dirs=WebContent\WEB-INF\lib src\edu\nuist\osbank\service\ExSyncService.java

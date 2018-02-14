@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="css/marquee.css" />
+		<script src="js/marquee.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+		<!--引入习题ids-->
+		<script src="js/exList.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">body {
+	margin: 0;
+	padding: 10px;
+	background: #FEFDFE;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	//font: 70% Arial, Helvetica, sans-serif; 
+	color: #5f5f5f;
+}
+
+#title h2 {
+	text-align: center;
+}
+
+#selectTip {
+	margin: 20px;
+}
+
+#taskList {
+	position: relative;
+}
+
+#taskList ul {
+	padding-left: 5%;
+	margin: 10px 5% 0 4%;
+}
+
+#taskList ul li {
+	position: relative;
+	list-style-type: none;
+	font-size: 23px;
+	border-bottom: 1px solid #bfbfbf;
+	margin: 5px 2px 5px 2px;
+	height: 40px;
+	margin-bottom: 10px;
+}
+
+.exItem-a {
+	color: white;
+	background-color: #49d0c4;
+	padding: 4px 20px 4px 30px;
+	position: absolute;
+	bottom: 0;
+}
+
+#scrlPosition {
+	margin-left: 40%;
+}
+
+.icon-yiwancheng,
+.icon-weiwancheng {
+	color: orange;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.icon-weiwancheng {
+	font-size: 35px;
+}
+
+.right {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.left {}
+
+.datiyingxiao,
+.iconfont {
+	color: orange;
+}
+
+.icon-tag {
+	font-size: 8px;
+	margin: 0;
+}</style>
+
+		<script>
+		</script>
+	</head>
+
+	<body>
+		<div id="title">
+			<h2>
+				欢迎来到操作系统练习题库
+			</h2>
+		</div>
+		<div id="scrlPosition">
+			<div id="scrlContainer">
+				<div id="scrlContent">
+					每份作业只能提交一次 请认真作答！！
+				</div>
+			</div>
+		</div>
+		<h3 id="selectTip">请选择作业:</h3>
+		<div id="taskList">
+			<ul>
+			 <img src="img/5-121204193955-51.gif" id="loading" style="display:block;width:70px;height:70px;margin:auto;" />
+			 
+				<!--<li class="exItem" id="0" >
+					<a class="exItem-a left"><span>作业 1</span>
+						
+						
+					</a>
+					<div class="right" id="0">
+						<i class="iconfont icon-datiyingxiao"></i>
+						
+						<p class="icon-tag">答题</p>
+				  </div>
+				
+				</li>
+
+
+				<li class="exItem" id="1" >
+					<a class="exItem-a left"><span>作业 2</span>
+						<i class="iconfont icon-yiwancheng"></i>
+						
+					</a>
+					<div class="right" id="1">
+						<i class="iconfont icon-chakanxiangqing"></i>
+						
+						<p class="icon-tag">详情</p>
+				  </div>
+				
+				</li>
+				
+				<li class="exItem" id="1" >
+					<a class="exItem-a left"><span>作业 2</span>
+						<i class="iconfont icon-weiwancheng"></i>
+						
+					</a>
+					<div class="right" id="test" data-type="unfinished">
+						<i class="iconfont icon-datiyingxiao"></i>
+						
+						<p class="icon-tag">答题</p>
+				  </div>
+				
+				</li>-->
+			</ul>
+		</div>
+		<script>function genTaskList(userSituStr) {
+	//var userSituStr;//="1,0,0";
+
+	//var userSitu =userSituArr;
+	var userSitu = userSituStr.split(",");
+	var allTaskLis = "";
+	for(var i = 0; i < userSitu.length; i++) {
+		if(userSitu[i] == "0") { //未作答
+			var liHtml = '<li class="exItem" id="' + i + '" >' +
+				'<a class="exItem-a left"><span>作业 ' + (i + 1) + '</span>' +
+				'</a>' +
+				'<div class="right" id="' + i + '">' +
+				'<i class="iconfont icon-datiyingxiao"></i>' +
+
+				'<p class="icon-tag" data-type="notDo">答题</p>' +
+				'</div>' +
+
+				'</li>';
+			allTaskLis += liHtml;
+		} else if(userSitu[i] == "-1") { //未完成
+
+			var liHtml = '<li class="exItem" id="' + i + '" >' +
+				'<a class="exItem-a left"><span>作业 ' + (i + 1) + '</span>' +
+				'<i class="iconfont icon-weiwancheng"></i>' +
+				'</a>' +
+				'<div class="right" id="' + i + '">' +
+				'<i class="iconfont icon-datiyingxiao"></i>' +
+				'<p class="icon-tag" data-type="unfinished">答题</p>' +
+				'</div>'
+			'</li>';
+			allTaskLis += liHtml;
+		} else { //已完成
+			var liHtml = '<li class="exItem" id="' + i + '" >' +
+				'<a class="exItem-a left"><span>作业 ' + (i + 1) + '</span>' +
+				'<i class="iconfont icon-yiwancheng"></i>' +
+				'</a>' +
+				'<div class="right" id="' + i + '">' +
+				'<i class="iconfont icon-chakanxiangqing"></i>' +
+				'<p class="icon-tag" data-type="finished">详情</p>' +
+				'</div>'
+			'</li>';
+			allTaskLis += liHtml;
+		}
+	}
+
+	document.querySelector("#taskList ul").innerHTML = allTaskLis;
+}
+
+var urlinfo = decodeURI(window.location.href);
+//获取学号
+var stuNo = urlinfo.split("?")[1];
+
+var postUrl = "/osbank/getTaskSituationServlet?userId=" + stuNo + "&taskNum=" + exList.length;
+xhr(
+	postUrl,
+	false,
+	function(resText) {
+		console.log("getTaskSituationsuccess");
+		genTaskList(resText);
+		bindEvent();
+
+	},
+	function() {
+		alert("获取答题情况失败！")
+	}
+);
+/*var userSituArr=[];
+            for(var i=0;i<exList.length;i++){
+            	var postUrl = "/osbank/getTaskSituationServlet?userId=" + stuNo + "&taskId=" + i;
+			xhr(
+				postUrl,
+				false,
+				function(resText) {
+					console.log(resText);
+					userSituArr[i]=resText;
+					
+					if(exList.length==i){
+						genTaskList(userSituArr);
+					    bindEvent();
+					}
+				},
+				function() {
+					alert("task"+i+"获取答题情况失败！");
+				}
+			);
+			
+            }*/
+
+function bindEvent() {
+	var exlis = document.querySelectorAll(".exItem .right");
+
+	for(var i = 0; i < exlis.length; i++) {
+
+		//根据按钮打开详情或 答题页面
+		exlis[i].addEventListener("click", function() {
+
+				var exJson = exList[parseInt(this.id)];
+
+				var exJstr = JSON.stringify(exJson);
+
+				/*if(this.querySelector(".icon-tag").getAttribute("data-type") == "答题") {//或自定义属性
+							window.location.href = encodeURI("exercise.html" + "?" + "stuNo=" + stuNo + "&exJstr=" + exJstr + "&taskId=" + parseInt(this.id));
+
+						} else if(this.querySelector(".icon-tag").getAttribute("data-type")== "finished") {
+							window.location.href = encodeURI("detail.html" + "?" + "stuNo=" + stuNo + "&exJstr=" + exJstr + "&taskId=" + parseInt(this.id));
+*/
+
+				if(this.querySelector(".icon-tag").getAttribute("data-type") == "finished") {
+					window.location.href = encodeURI("detail.html" + "?" + "stuNo=" + stuNo + "&exJstr=" + exJstr + "&taskId=" + parseInt(this.id));
+
+				} else if(this.querySelector(".icon-tag").getAttribute("data-type") == "notDo") {
+					window.location.href = encodeURI("exercise.html" + "?" + "stuNo=" + stuNo + "&exJstr=" + exJstr + "&taskId=" + parseInt(this.id) + "&firstId=0");
+
+				} else if(this.querySelector(".icon-tag").getAttribute("data-type") == "unfinished") {
+					var taskId=parseInt(this.id);
+					var postUrl = "/osbank/GetFinishedIdServlet?userId=" + stuNo + "&taskId="+parseInt(this.id) ;
+					xhr(
+						postUrl,
+						false,
+						function(resText) {
+							console.log(resText);
+							window.location.href = encodeURI("exercise.html" + "?" + "stuNo=" + stuNo + "&exJstr=" + exJstr + "&taskId=" + taskId + "&firstId=" + (parseInt(resText) + 1));
+
+						},
+						function() {
+							alert("获取此作业已完成id失败！")
+						}
+					);
+
+				}
+			
+
+		}, false);
+}
+}</script>
+	</body>
+
+</html>

@@ -1,0 +1,67 @@
+.rating-level  { padding: 0; list-style-type: none;}
+.stars{
+	position:absolute;
+	right:0;
+}
+
+.shop-rating{
+	margin-bottom: 10px;
+}
+
+.shop-rating p{
+	margin: 0;
+}
+
+
+.rating-level,
+.rating-level a {
+	 background: url("../img/o_star.png") no-repeat /*scroll*/ 1000px 1000px;
+}
+
+.rating-level {margin:0;
+	background-position: 0px 0px;
+	width: 120px;
+	height: 23px;
+	position: relative;
+	//left:100%;
+}
+
+
+
+.rating-level a {
+	height: 23px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.rating-level a.one-star {
+	width: 20%;
+	z-index: 6;
+}
+
+.rating-level a.two-stars {
+	width: 40%;
+	z-index: 5;
+}
+
+.rating-level a.three-stars {
+	width: 60%;
+	z-index: 4;
+}
+
+.rating-level a.four-stars {
+	width: 80%;
+	z-index: 3;
+}
+
+.rating-level a.five-stars {
+	width: 100%;
+	z-index: 2;
+}
+.difdeg{
+	//float:right;
+	font-size: 10px;
+	color:#797777;
+	
+}

@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link href="css/bootstrap-gliphicon/css/bootstrap.min-icon.css" rel="stylesheet" type="text/css">
+		<style>
+			.glyphicon-ok {
+				color: green
+			}
+			
+			.glyphicon-remove {
+				color: red
+			}
+			
+			body {
+				padding: 10px;
+				background-color: transparent;
+				font-family: "微软雅黑";
+			}
+			
+			.ex {
+				margin: 5px;
+			}
+			/*a.two-stars {
+				background-position: 0 -28px
+			}*/
+			
+			.stem,
+			.choice {
+				font-size: 18px;
+				margin: 0;
+			}
+			
+			.stem {
+				margin-bottom: 12px;
+			}
+			
+			.choice {
+				margin-top: 30px;
+			}
+			
+			li {
+				list-style-type: none;
+			}
+			
+			.score {
+				//font
+				//font-size: 25px;
+				color: red;
+			}
+			
+			.user-answer-tag,
+			.user-answer-tag:hover,
+			.refer-answer-tag,
+			.refer-answer-tag:hover {
+				color: white;
+				background-color: #00bbff;
+				padding: 5px;
+			}
+			
+			.refer-answer-tag,
+			.refer-answer-tag:hover {
+				background-color: #11b933;
+			}
+			
+			.back {
+				font-size: 25px;
+				color: white;
+				background-color: #00bbff;
+				border-radius: 5px;
+				width: 95%;
+				padding: 5px;
+				text-align: center;
+				margin: auto;
+				margin-top: 50px;
+			}
+			
+			.picker {
+				position: relative;
+			}
+			
+			.query {
+				color: white;
+				//margin:10px;
+				text-align: center;
+				//height:20px;
+				width: 60px;
+				padding: 2px;
+				//border-radius: 5px;
+				background: #11b933;
+			}
+			
+			.right {
+				//float:right;
+				position: absolute;
+				right: 5px;
+				top: 0px;
+			}
+			
+			.glyphicon-user {
+				color: orange;
+			}
+			
+			.percent {
+				color: red
+			}
+			.EchartPie{
+				height:56px;
+				max-width:960px;
+			}
+			.EchartBar{
+				height:170px;
+				margin-top:-40px;
+				margin-bottom:-30px;
+				max-width:960px;
+			}
+		</style>
+		<title></title>
+
+		<script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/exList.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+		<script>
+		</script>
+	</head>
+
+	<body>
+		<h2>欢迎查看答题情况</h2>
+		<div class="picker">
+			<select>
+				<!--<option value='0'>作业一</option>
+				<option value='1'>作业二</option>-->
+			</select>
+			<div class='query right'> 查询</div>
+		</div>
+		<div class="detail">
+			<img src="img/5-121204193955-51.gif" id="loading" style="display:block;width:70px;height:70px;margin:auto;" />
+
+		</div>
+		<!--<div class="ex-detail-item">
+			<p class="stem"><span class="question-id">1、</span>进程调度的职责是按给定的___ 从___ 中选择一个进程，让它占用处理器。</p>
+			<p class="statistics-num">
+				<span class="glyphicon glyphicon-user"></span> 69
+				<span class="glyphicon glyphicon-ok"></span> 35
+				<span class="glyphicon glyphicon-remove"></span> 34
+			</p>
+			<p class="statistics-percent">正确率 <span class="percent">(35/69)%</span></p>
+			<p> 参考答案：<span>进程控制块/PCB</span></p>
+
+			<p> 参考答案：<span>进程控制块/PCB</span></p>
+		</div>
+
+		<div class="ex-detail-item">
+			<p class="stem"><span class="question-id">1、</span>所谓多道程序设计，即指每一时刻有若干个进程在执行。</p>
+			<p class="statistics-num">
+				<span class="glyphicon glyphicon-user"></span> 69
+				<span class="glyphicon glyphicon-ok"></span> 35
+				<span class="glyphicon glyphicon-remove"></span> 34
+			</p>
+			<p class="statistics-percent">正确率 <span class="percent">50.9%</span></p>
+			<p> 参考答案：<span>F</span></p>
+		</div>
+
+		<div class="ex-detail-item">
+			<p class="stem"><span class="question-id">1、</span>为了使系统中所有的用户都能得到及时的响应，该操作系统应该是 ( )</p>
+
+			<ul class="stem">
+				<li>A.多道批处理系统</li>
+				<li>B.分时系统</li>
+				<li>C.实时系统</li>
+				<li>D.网络系统</li>
+			</ul>
+			<p class="statistics-num">
+				<span class="glyphicon glyphicon-user"></span> 69
+				<span class="glyphicon glyphicon-ok"></span> 35
+				<span class="glyphicon glyphicon-remove"></span> 34
+			</p>
+			<p class="statistics-percent">正确率 <span class="percent">50.9%</span></p>
+			<p> 参考答案：<span>B</span></p>
+		</div>
+
+		<div class="ex-detail-item">
+
+			<p class="stem"><span class="question-id">1、</span>请概述高级调度、低级调度的主要任务是什么？为什么要引入中级调度？
+				<p class="statistics-num">
+					<span class="glyphicon glyphicon-user"></span> 69
+
+				</p>
+				<p class="statistics-percent">平均分 <span class="percent">6.5</span></p>
+				<a class="refer-answer-tag">参考答案</a>
+
+				<p class="refer-answer">高级调度，其主要任务是按一定的原则对外存上处于后备状态的作业进行。低级调度，其主要任务是按照某种策略和方法选取一个处于就绪状态的进程，将处理机分配给它。为了提高内存利用率和系统吞吐量，引入了中级调度。",
+				</p>
+		</div>
+
+		<div class="ex-detail-item">
+			<p class="stem"><span class="question-id">1、</span>假设有 4 道作业，它们提交的时刻及执行时间由下表给出，计算在单道程序环境下，采用先来先服务调度算法和最短作业优先算法的平均周转时间和平均带权周转时间，并指出它们的调度顺序。
+				<table>
+					<tr>
+						<td>作业号</td>
+						<td>提交时刻 ( 小时 )</td>
+						<td>执行时间 ( 小时 )</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>10:00</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>10:20</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>10:40</td>
+						<td>0.5</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>10:50</td>
+						<td>0.4</td>
+					</tr>
+				</table>
+
+				<p class="statistics-num">
+					<span class="glyphicon glyphicon-user"></span> 69
+
+				</p>
+				<p class="statistics-percent">平均分 <span class="percent">50.9%</span></p>
+				<a class="refer-answer-tag">参考答案</a>
+
+				<p class="refer-answer">高级调度，其主要任务是按一定的原则对外存上处于后备状态的作业进行。低级调度，其主要任务是按照某种策略和方法选取一个处于就绪状态的进程，将处理机分配给它。为了提高内存利用率和系统吞吐量，引入了中级调度。",
+
+		</div>-->
+
+		
+	
+
+        
+		
+		<script>
+			//生成下拉框
+	        
+			for(var i = 0; i < exList.length; i++) {
+				var opt = document.createElement('option');
+				opt.value = i + "";
+				opt.innerHTML = "作业 " + (i + 1);
+				document.querySelector('select').appendChild(opt);
+			}
+			var exJsons = [],
+			staJsons = [],
+			percentArr = [];
+			document.querySelector('.query').onclick=function() {
+				handleQuery();
+			}
+			function handleQuery () {
+				var obj = document.querySelector('select'); //定位id
+	
+			var index = obj.selectedIndex; // 选中索引
+	
+			// 选中文本
+	
+			var exNo = parseInt(obj.options[index].value); // 选中值
+			var list = JSON.stringify(exList[exNo]);
+			/*var testJson=[
+				{
+					"type": "ex_ss",
+					"id": 2,
+					"stem": "为了使系统中所有的用户都能得到及时的响应，该操作系统应该是 (    )",
+					"option": "A.多道批处理系统&B.分时系统&C.实时系统&D.网络系统",
+					"answer": "B",
+					"difdeg": 1
+				},
+
+				{
+					"type": "ex_ss",
+					"id": 3,
+					"stem": "多个进程的实体能存在于同一内存中，在一段时间内都得到运行这种性质称作进程的(    )",
+					"option": "A.动态性&B.并发性&C.调度性&D.异步性",
+					"answer": "B",
+					"difdeg": 1
+				},
+
+				{
+					"type": "ex_ss",
+					"id": 4,
+					"stem": "避免死锁的一个著名的算法是(    )",
+					"option": "A．先人先出算法&B．优先级算法&C．银行家算法&D．资源按序分配法",
+					"answer": "C",
+					"difdeg": 1
+				}, {
+					"type": "ex_ss",
+					"id": 5,
+					"stem": " 操作系统中利用信号量和P、V操作(    )",
+					"option": "A．只能实现进程的互斥&B．只能实现进程的同步&C．可实现进程的互斥和同步&D．可完成进程调度",
+					"answer": "C",
+					"difdeg": 4
+				}
+
+				,
+
+				{
+					"type": "ex_judge",
+					"id": 2,
+					"stem": "所谓多道程序设计，即指每一时刻有若干个进程在执行。",
+					"answer": "F",
+					"difdeg": 2
+				},
+
+				{
+					"type": "ex_judge",
+					"id": 3,
+					"stem": "采用多道程序设计的系统中，系统的程序道数越多，系统效率越高。",
+					"answer": "F",
+					"difdeg": 2
+				},
+
+				{
+					"type": "ex_fb",
+					"id": 2,
+					"stem": "特权指令只能在_管或系统__1__态下执行，若在__2__态下执行则被认为是非法指令。",
+					"answer": {
+
+						"unordered": ["管或系统", "目或用户"]
+
+					},
+					"difdeg": 3
+				},
+
+				{
+					"type": "ex_fb",
+					"id": 3,
+					"stem": "进程调度的职责是按给定的__1__ 从__2__ 中选择一个进程，让它占用处理器。",
+					"answer": {
+						"1": ["进程调度算法", "调度算法"],
+						"2": "就绪队列"
+					},
+					"difdeg": 2
+				}, {
+					"type": "ex_sa",
+					"id": 2,
+					"stem": "请概述高级调度、低级调度的主要任务是什么？为什么要引入中级调度？",
+					"answer": "高级调度，其主要任务是按一定的原则对外存上处于后备状态的作业进行。低级调度，其主要任务是按照某种策略和方法选取一个处于就绪状态的进程，将处理机分配给它。为了提高内存利用率和系统吞吐量，引入了中级调度。",
+					"difdeg": 4
+				}, {
+					"type": "ex_sa",
+					"id": 3,
+					"stem": "试画出进程5态转换图，并说明状态之间转换的典型原因。",
+					"answer": "略",
+					"difdeg": 2
+				},
+
+				{
+					"type": "ex_calc",
+					"id": 2,
+					"stem": "假设有 4 道作业，它们提交的时刻及执行时间由下表给出，计算在单道程序环境下，采用先来先服务调度算法和最短作业优先算法的平均周转时间和平均带权周转时间，并指出它们的调度顺序。<table><tr><td>作业号</td><td>提交时刻 ( 小时 )</td><td>执行时间 ( 小时 )</td></tr><tr><td>1</td><td>10:00</td><td>2</td></tr><tr><td>2</td><td>10:20</td><td>1</td></tr><tr><td>3</td><td>10:40</td><td>0.5</td></tr><tr><td>4</td><td>10:50</td><td>0.4</td></tr></table>",
+					"answer": "略",
+					"difdeg": 4
+				}, {
+					"type": "ex_calc",
+					"id": 3,
+					"stem": "对于一个将页表存放在内存中的分页系统：（1）如果访问内存需要0.2微妙，有效访问时间为多少？（2）如果加一个快表，且假定在快表中找到页表项的几率高达90%，则有效访问时间又是多少（假定查快表需花的时间为0）？",
+					"answer": "分页系统要访问两次，第一次要访问页表，将页号换成页地址，并与偏移量相加，得出实际地址，第二次要访问实际的地址的，所以所用时间是0.4μs，如果有快表，命中率为90%，则访问时间为0.2*90%+0.4*10%=0.18+0.04=0.22μs",
+					"difdeg": 3
+				}
+				];
+			staJsons=[
+				{
+					"count":11,"correct":5,"wrong":6
+				},
+				{
+					"count":19,"correct":8,"wrong":11
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":20,"correct":8,"wrong":12
+				},
+				{
+					"count":21,"score":6,"break1":2,"break2":5,"break3":10,"break4":4
+				},
+				{
+					"count":41,"score":15,"break1":5,"break2":10,"break3":20,"break4":5
+				},
+				{
+					"count":41,"score":15,"break1":5,"break2":10,"break3":20,"break4":5
+				},
+				{
+					"count":41,"score":15,"break1":5,"break2":10,"break3":20,"break4":5
+				},
+				
+			]*/
+			/*for(var i = 0; i < staJsons.length; i++) {
+				percentArr[i] = staJsons[i].correct / staJsons[i].count*100;console.log(percentArr[i])
+				percentArr[i]=percentArr[i].toFixed(1);
+			}
+			showdetail(testJson);
+			setEchart(testJson);
+			console.log(list);*/
+			
+			
+		
+	
+			function askExSuc(resJson) {
+				exJsons = resJson.data;
+				console.log(exJsons);
+	
+				var postUrl = "/osbank/GetStatisticsServlet?data=" + list;
+				xhr(
+					postUrl,
+					true,
+					function(resJson) {
+						staJsons = resJson.data;
+						console.log(staJsons);
+						for(var i = 0; i < staJsons.length; i++) {
+							percentArr[i] = staJsons[i].correct / staJsons[i].count*100+"%";
+						}
+	
+						showdetail(exJsons);
+						setEchart(exJsons);
+					},
+					function() {
+						alert("获取答题情况失败！")
+					}
+				);
+				//getExSucHandle();
+			}
+	
+			function askExFail() {
+				alert("获取题目失败！！");
+			}
+			var postUrl = "/osbank/AskExServlet?data=" + list;
+			xhr(postUrl, true, askExSuc, askExFail);
+			
+			}
+			
+			
+			//showdetail();
+			/**/
+			function showdetail(exJsons) {
+				var detailHtmls = [];
+
+				for(var i = 0; i < exJsons.length; i++) {
+					getUserAnswersAndGenDetailHtmls(i);
+				}
+				var detail = "";
+
+				for(var i in detailHtmls) {
+					detail += detailHtmls[i];
+				}
+
+				document.querySelector(".detail").innerHTML = detail;
+
+				function getUserAnswersAndGenDetailHtmls(exId) {
+					switch(exJsons[exId].type) {
+						case "ex_ss":
+							{
+
+								var options = exJsons[exId].option.split("&");
+								console.log(options);
+								var optHtml = '<ul class="stem">';
+								for(var i = 0; i < options.length; i++) {
+									optHtml += "<li>" + options[i] + '</li>';
+								}
+								optHtml += "</ul>";
+
+
+								var exHtml = '<div class="ex-detail-item">' +
+									'<p class="stem"><span class="question-id">' + (exId + 1) + '、</span>' + exJsons[exId].stem + '</p>' +
+									optHtml +
+									'<div id="Echart'+exId+'"  class="EchartPie"></div>'+
+									/*'<p class="statistics-num">' +
+									'<span class="glyphicon glyphicon-user"></span>' + staJsons[exId].count +
+									'<span class="glyphicon glyphicon-ok"></span>' + staJsons[exId].correct +
+									'<span class="glyphicon glyphicon-remove"></span>' + staJsons[exId].wrong +
+									'</p>' +
+									'<p class="statistics-percent">正确率   <span class="percent">' + percentArr[exId] + '</span></p>' +*/
+									'<p> 参考答案：<span>' + exJsons[exId].answer + '</span></p>' +									
+									'</div>';
+
+								detailHtmls[exId] = exHtml;
+								
+								break;
+
+							}
+						case "ex_judge":
+							{
+
+
+								var exHtml = '<div class="ex-detail-item">' +
+									'<p class="stem"><span class="question-id">' + (exId + 1) + '、</span>' + exJsons[exId].stem + '</p>' +
+									'<p class="statistics-num">' +
+									'<div id="Echart'+exId+'" class="EchartPie"></div>'+
+									/*'<span class="glyphicon glyphicon-user"></span>' + staJsons[exId].count +
+									'<span class="glyphicon glyphicon-ok"></span>' + staJsons[exId].correct +
+									'<span class="glyphicon glyphicon-remove"></span>' + staJsons[exId].wrong +
+									'</p>' +
+									'<p class="statistics-percent">正确率   <span class="percent">' + percentArr[exId] + '</span></p>' +*/
+									'<p> 参考答案：<span>' + exJsons[exId].answer + '</span></p>' +									
+									'</div>';
+
+								detailHtmls[exId] = exHtml;
+								break;
+							}
+						case "ex_fb":
+							{
+
+								var ansJson = exJsons[exId].answer;
+
+								var unorder = ansJson.unordered;
+								var exHtml = '<div class="ex-detail-item">' +
+									'<p class="stem"><span class="question-id">' + (exId + 1) + '、</span>' + exJsons[exId].stem + '</p>' +
+									'<div id="Echart'+exId+'"  class="EchartPie"></div>'/*+
+									'<p class="statistics-num">' +
+									'<span class="glyphicon glyphicon-user"></span>' + staJsons[exId].count +
+									'<span class="glyphicon glyphicon-ok"></span>' + staJsons[exId].correct +
+									'<span class="glyphicon glyphicon-remove"></span>' + staJsons[exId].wrong +
+									'</p>' +
+									'<p class="statistics-percent">正确率   <span class="percent">' + percentArr[exId] + '</span></p>' ;*/
+              						console.log(exJsons[exId].stem);
+									//获取空格个数
+									/*var  re  =  new  RegExp("___", "g");
+								var  arr  =  exJsons[exId].stem.match(re);
+								var blankLen = arr.length;
+								//如果答案中不存在无序项
+								if(unorder == null) {
+									var bans = [];
+									//遍历标准答案的answerJson 取出到bans
+									for(var key in ansJson) {
+										//console.log("key:"+key+" "+ansJson[key]);
+										bans[parseInt(key) - 1] = ansJson[key];
+									}
+
+									for(var i = 0; i < blankLen; i++) {
+										var iconClass, referenceStr = ""; //参考答案
+
+										if(typeof bans[i] == "object") { //答案为数组,即此空有多个答案，匹配其中一个则正确
+											for(var j in bans[i]) {
+
+												referenceStr += (bans[i][j] + '/')
+											}
+											referenceStr = referenceStr.substring(0, referenceStr.length - 1); //去除最后一个/
+										} else if(typeof bans[i] == "string") { //此空仅有一个答案
+
+											referenceStr = bans[i];
+										}
+
+										var item = '<p> 参考答案：<span>' + referenceStr + '</span></p>';
+
+										exHtml += item;
+									}					
+									exHtml += '</div>';
+
+									detailHtmls[exId] = exHtml;
+								} else {*/
+									var item = '<p> 参考答案：<span>' + unorder + '</span></p>';
+
+									exHtml += item;
+									
+									exHtml += '</div>';
+
+									detailHtmls[exId] = exHtml;
+								//}
+								
+								break;
+							}
+						case "ex_sa":
+							{
+
+								var exHtml = '<div class="ex-detail-item">' +
+									'<p class="stem"><span class="question-id">' + (exId + 1) + '、</span>' + exJsons[exId].stem + '</p>' +
+									'<div id="Echart'+exId+'" class="EchartBar"></div>'+
+									/*'<p class="statistics-num">' +
+									'<span class="glyphicon glyphicon-user"></span>' + staJsons[exId].count+
+
+								'</p>' +
+								'<p class="statistics-percent">平均分   <span class="percent">' + staJsons[exId].avg + '</span></p>' +*/
+								'<a class="refer-answer-tag">参考答案</a>' +
+
+								'<p class="refer-answer">' + exJsons[exId].answer +
+								'</p>' +								
+								'</div>';
+								
+								detailHtmls[exId] = exHtml;
+								
+								break;
+							}
+						case "ex_calc":
+							{
+								var exHtml = '<div class="ex-detail-item">' +
+									'<p class="stem"><span class="question-id">' + (exId + 1) + '、</span>' + exJsons[exId].stem + '</p>' +
+									'<div id="Echart'+exId+'" class="EchartBar"></div>'+
+									/*'<p class="statistics-num">' +
+									'<span class="glyphicon glyphicon-user"></span>' + staJsons[exId].count+
+
+								'</p>' +*/
+								'<p class="statistics-percent">平均分   <span class="percent">' + staJsons[exId].avg + '</span></p>' +
+								'<a class="refer-answer-tag">参考答案</a>' +
+
+								'<p class="refer-answer">' + exJsons[exId].answer +
+								'</p>' +
+								'</div>';
+
+								detailHtmls[exId] = exHtml;
+								
+								break;
+							}
+							
+					}
+
+				}
+				
+			}
+			//showdetail();
+			function setEchart(exJsons){
+				/*var noOfStations;
+				var odd;
+				var stations=new Array();
+				var scoreStations=new Array();
+				var breakPoint;*/
+				for(var i = 0; i < exJsons.length; i++) {										
+					switch(exJsons[i].type){
+						case "ex_ss":case "ex_judge":case "ex_fb":{
+							
+							echartPie(i,staJsons[i].correct,staJsons[i].wrong,staJsons[i].count);
+							break;
+						}
+						case "ex_sa":case"ex_calc":{
+							/*breakPoint=Math.floor(staJsons[i].tatalScore/4);//console.log();
+							odd=staJsons[i].tatalScore%4;
+							stations[0]=breakPoint;
+							for(var j =3;j>0;j--){								
+								stations[j]=(j+1)*breakPoint+odd;
+								if(odd!=0){odd--};
+							}
+							scoreStations[0]='0'+' - '+stations[0];
+							for(var k=1;k<4;k++){
+								scoreStations[k]=stations[k-1]+' - '+stations[k]
+							}
+							*/
+							echartBar(i,staJsons[i].correct,staJsons[i].wrong,staJsons[i].count,staJsons[i].break1,staJsons[i].break2,staJsons[i].break3,staJsons[i].break4,staJsons[i].score);
+							
+							
+							break;
+						}
+						
+					}
+				}									
+			}
+			
+			
+			
+			
+			function echartPie(id,correct,wrong,count){
+				
+				require.config({
+		            paths: {
+		                echarts: 'http://echarts.baidu.com/build/dist'
+		            }
+		        });
+		
+		        // 使用
+		        require(
+		            [
+		                'echarts',
+		                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+		                'echarts/chart/pie'
+		            ],
+		            function (ec) {
+		                // 基于准备好的dom，初始化echarts图表
+		                var myChart = ec.init(document.getElementById('Echart'+id));
+		
+		              var  option = {
+		                	title : {
+		                  	text: '答题情况：',
+		                  	textStyle:{
+	                    		fontWeight:'lighter',
+	                    		fontSize:14
+		                  	},
+		                  	subtext: '总人数:'+count+'\n'+'正确率:'+percentArr[id]+"%",//可修改
+		                  	x:'bottom'		      
+					    },
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{a} <br/>{b} : {c} ({d}%)"
+					    },					  
+					    calculable : true,
+					    series : [
+						        {
+						            name:'答题情况',
+						            type:'pie',
+						            radius : '50%',
+						            center: ['65%', '50%'],
+						            data:[
+						                {value:correct, name:'正确数'},//
+						                {value:wrong, name:'错误数'},//修改value即可
+						
+					            ]
+					        }
+					    ]
+					};
+		
+		                // 为echarts对象加载数据
+		                myChart.setOption(option);
+		            }
+		        );	
+			}
+			function echartBar(id,correct,wrong,count,break1,break2,break3,break4,tatalScore){
+				// 路径配置
+		        require.config({
+		            paths: {
+		                echarts: 'http://echarts.baidu.com/build/dist'
+		            }
+		        });
+
+		        // 使用
+		        require(
+		            [
+		                'echarts',
+		                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+		                'echarts/chart/pie'
+		            ],
+		            function (ec) {
+		            	var bp=new Array();
+		            	for(var j=0; j<3; j++){
+		            		bp[j]=tatalScore/4*(j+1)
+		            		
+		            	}
+		                // 基于准备好的dom，初始化echarts图表
+		                var myChart = ec.init(document.getElementById('Echart'+id));
+
+		                var option = {
+					        tooltip: {
+					            show: true
+					        },
+					        color: ['#87CFFB'],
+					        title:{				
+					        	subtext:"答题情况："+"\n"+"总人数："+count,
+					        	x:"center",
+					        	y:"top"
+					        },
+					        grid: {
+						        left: '3%',
+						        right: '4%',
+						        bottom: '3%',
+						        containLabel: true
+						    },
+					        xAxis : [
+					            {
+					                type : 'category',
+					                data :[0+" - "+bp[0],bp[0]+" - "+bp[1],bp[1]+" - "+bp[2],bp[2]+" - "+tatalScore] //["0%-25%","25%-50%","50%-75%","75%-100%"]
+					            }
+					        ],
+					        yAxis : [
+					            {
+					                type : 'value'
+					            }
+					        ],
+					        series : [
+					            {
+					                name:"答对人数",
+					                type:"bar",
+					                data:[break1,break2,break3,break4]
+					                
+					            }
+					        ]
+					    };
+
+
+		                // 为echarts对象加载数据
+		                myChart.setOption(option);
+		            }
+		        );
+			}
+		</script>
+		
+		<script>
+			
+			
+		</script>
+		
+	</body>
+
+</html>

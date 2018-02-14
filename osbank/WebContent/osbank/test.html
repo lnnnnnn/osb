@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	<!--	<script>
+			var answers = ["aa", "bb"];
+
+			function getAllAnswers(answers) {
+				var len = answers.length;
+
+				var permuAns = [],
+					tmpAns = [],
+					mark = [];
+
+				for(var j = 0; j < len; j++) mark[j] = 0;
+
+				function permutation(cur)
+
+				{
+					if(cur == len) {
+						var tmp = "";
+						for(var i = 0; i < len; i++) tmp += tmpAns[i];
+						//console.log(tmp);
+						permuAns.push(tmp);
+					}
+					for(var i = 0; i < len; i++) {
+						if(!mark[i]) tmpAns[cur] = answers[i], mark[i] = 1, permutation(cur + 1), mark[i] = 0;
+
+					}
+				}
+
+				permutation(0);
+
+				return permuAns;
+			}
+
+			console.log(getAllAnswers(answers));
+		</script>
+-->	<!--<script src="http://cdn.staticfile.org/Plupload/2.1.1/moxie.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://cdn.staticfile.org/Plupload/2.1.1/plupload.dev.js" type="text/javascript" charset="utf-8"></script>
+	
+		<script src="js/qiniu.js" type="text/javascript" charset="utf-8"></script>-->
+	</head>
+
+	<body>
+    <div id="container">
+    <input type="file" name="pickfiles" id="pickfiles" value="" />
+    </div>
+    <script>
+    
+      document.querySelector("#pickfiles").addEventListener("click",function  () {
+      	console.log(this);
+      	 var s=this.value; 
+            if(s==""){
+                alert("Please choose a posdetail file.");
+               
+            }else{
+            	console.log(this.value);
+            }
+      },false);
+    	
+    	
+    </script>
+	</body>
+
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    
+   <!-- <script src="js/mui.min.js"></script>-->
+    <script src="/osbank/osbank/js/xhr.js"></script>
+    <script type="text/javascript">//要改成你计算机开热点后的IP地址,两个都要改http://(你的计算机IP地址):8080/ExamineSystem/loginServlet</script>
+    <link rel="stylesheet" href="/osbank/osbank/css/pure-min.css">
+    <link rel="stylesheet" href="/osbank/osbank/css/index.css">
+    
+    
+    <link href="http://www.js-css.cn/jscode/jscode.css" rel="stylesheet" />
+<!--JS代码网顶部CSS-->
+<link rel="stylesheet" type="text/css" href="/osbank/osbank/css/ui2.css?2013032917">
+<link rel="stylesheet" href="/osbank/osbank/css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+</head>
+<body style="padding-top:70px">
+	
+	<header class="mui-bar mui-bar-nav">
+			<!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+			<a id="menu" class="mui-action-menu mui-icon mui-icon-bars mui-pull-right" href="#topPopover"></a>
+			<h1 class="mui-title">操作系统习题库</h1>
+		</header>
+		
+		
+		<!--右上角弹出菜单-->
+		<div id="topPopover" class="mui-popover">
+			<div class="mui-popover-arrow"></div>
+			<li class="mui-table-view-cell">
+							<a data-category="UserAccount" data-action="login" data-toggle="modal" href="#login-modal">批阅</a>
+						</li>
+						<li class="mui-table-view-cell"><a href="statistics.html">查看答题情况</a>
+						</li>
+						
+			
+
+		</div>
+		
+ <div class="modal in" id="login-modal" > <a class="close" data-dismiss="modal">×</a>
+        <h1>登录</h1>
+       
+       
+       <!-- <form class="login-form clearfix" method="post" >-->
+          <div class="form-arrow"></div>
+          <input class="username" name="email" type="text" placeholder="用户名：">
+          <input class="password" name="password" type="password" placeholder="密码：">
+          <input type="submit" name="type" class="button-blue login" value="登录">
+          <input type="hidden" name="return-url" value="">
+          <div class="clearfix"></div>
+         
+          
+         
+          
+        <!--</form>-->
+      </div>
+	<div id="container">
+		<!--<img src="img/FSM-icon.gif" class="logo" style="width:160px;"/>-->
+		<img src="/osbank/osbank/img/exam_tests-512.png" class="logo"/>
+		<p align="center">(用户名和密码均为11位学号)</p> 	
+		<form name="login">
+			<input type="text" id="un" name="username" placeholder="请输入用户名..." />
+			<input type="password" id="pw" name="password" placeholder="请输入密码..."/>
+			<!--<button type="button" class="button pure-button pure-button-disabled">Register</button>
+-->			<button type="button" id="loginBut" class="button pure-button" style="background: #93B230">Login</button>
+	        
+		
+		</form>	
+	</div>
+	<script src="/osbank/osbank/js/mui.min.js"></script>
+		<script>
+			/*mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			mui('.mui-scroll-wrapper').scroll();
+			mui('body').on('shown', '.mui-popover', function(e) {
+				//console.log('shown', e.detail.id);//detail为当前popover元素
+			});
+			mui('body').on('hidden', '.mui-popover', function(e) {
+				//console.log('hidden', e.detail.id);//detail为当前popover元素
+			});*/
+			document.querySelector('.login').onclick=function  () {
+				var username=document.querySelector('.username').value;
+				var password=document.querySelector('.password').value;
+				var postUrl="/osbank/AdminLogin?username="+username+"&password="+password;
+				xhr(
+					postUrl,
+					false,
+					function  (resText) {
+						if(resText=="success"){
+								window.location.href="grade.html";
+						}
+					},
+					function  () {
+						alert('用户名或密码错误！');
+					}
+					
+				);
+				
+			}
+				</script>
+		<script src="/osbank/osbank/js/landing-min.js?2013032917"></script>
+	<script>//校验
+document.querySelector("#loginBut").addEventListener("click", function() {
+	var un = document.querySelector("#un").value,
+		pw = document.querySelector("#pw").value;
+	if(un.length != 11 || un != pw) {
+		alert("用户名或密码无效！")
+	} else {
+		window.location.href = encodeURI("index.html" + '?' + un);
+
+	}
+}, false)</script>
+</body>
+</html>

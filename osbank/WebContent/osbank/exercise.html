@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" href="css/page.css" type="text/css" charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="css/pure-min.css" />
+		<link rel="stylesheet" type="text/css" href="css/TB-star.css" />
+		<link rel="stylesheet" type="text/css" href="css/popover.css" />
+		<link href="css/bootstrap-gliphicon/css/bootstrap.min-icon.css" rel="stylesheet" type="text/css">
+		<script src="js/preview.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+		<script type="text/javascript" src="js/jquery.form.min.js"></script>
+		<style>
+			* {
+				font-family: "微软雅黑";
+			}
+			
+			body {
+				//padding:10px;
+				padding-top: 50px;
+				background-color: transparent;
+			}
+			
+			.ex {
+				margin: 5px;
+			}
+			/*a.two-stars {
+				background-position: 0 -28px
+			}*/
+			
+			.stem,
+			.choice {
+				font-size: 18px;
+				margin: 0;
+			}
+			
+			.stem {
+				margin-bottom: 12px;
+			}
+			
+			.choice {
+				margin-top: 30px;
+			}
+			
+			li {
+				list-style-type: none;
+			}
+			
+			.choice li {
+				margin-bottom: 15px;
+			}
+			
+			#title {}
+			
+			.blank,
+			.sa-answer {
+				margin-top: 60px;
+			}
+			
+			.blank .mui-input-row {
+				margin: auto;
+				text-align: center;
+				width: 85%;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			.file,
+			.file:hover {
+				position: relative;
+				display: inline-block;
+				background: #fff6a9;
+				border: 1px solid #ffd42a;
+				border-radius: 4px;
+				padding: 4px 12px;
+				overflow: hidden;
+				color: #ff9400;
+				margin-bottom: 5px;
+			}
+			
+			.file input {
+				position: absolute;
+				right: 0;
+				top: 0;
+				opacity: 0;
+			}
+			
+			.glyphicon-ok {
+				color: green
+			}
+			
+			.glyphicon-remove {
+				color: red
+			}
+		</style>
+		<script src="js/xhr.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<!--<script src="js/ExJsonForTest.js"></script>-->
+	</head>
+
+	<body>
+
+		<header>
+			<div style="width:15%;height:100%;float:left;"></div>
+			<div class="nvtt" id='title'>Examine System</div>
+			<div class="nvbt"><i class="iconfont icon-tuichu-copy"></i></div>
+
+		</header>
+		<div class="container-ex">
+			<img src="img/5-121204193955-51.gif" id="loading" style="display:block;width:70px;height:70px;margin:auto;" />
+
+		</div>
+		<div class="ex-detail ex">
+			<!--<div class="ex-detail-item">
+				<p class="stem"><span class="question-id">1、</span>进程调度的职责是按给定的__1__ 从__2__ 中选择一个进程，让它占用处理器。</p>
+				<p> <span class="glyphicon glyphicon-ok"></span></p>
+				<p> 你的答案：<span>PCB</span> 参考答案：<span>进程控制块/PCB</span></p>
+				<p> <span class="glyphicon glyphicon-remove" </span></p>
+				<p> 你的答案：<span>PCB</span> 参考答案：<span>进程控制块/PCB</span></p>
+			</div>
+
+			<div class="ex-detail-item">
+				<p class="stem"><span class="question-id">1、</span>所谓多道程序设计，即指每一时刻有若干个进程在执行。</p>
+				<p> <span class="glyphicon glyphicon-ok"></span></p>
+				<p> 你的答案：<span>F</span> 参考答案：<span>F</span></p>
+			</div>
+
+			<div class="ex-detail-item">
+				<p class="stem"><span class="question-id">1、</span>为了使系统中所有的用户都能得到及时的响应，该操作系统应该是 ( )</p>
+				<p> <span class="glyphicon glyphicon-remove"></span></p>
+				<p> 你的答案：<span>A.ddd</span> 参考答案：<span>B.vvv</span></p>
+			</div>-->
+		</div>
+		<!--<div class="ex-calc ex">
+			<p class="stem"><span class="question-id">1、</span>假设有 4 道作业，它们提交的时刻及执行时间由下表给出，计算在单道程序环境下，采用先来先服务调度算法和最短作业优先算法的平均周转时间和平均带权周转时间，并指出它们的调度顺序。
+				<table>
+					<tr>
+						<td>作业号</td>
+						<td>提交时刻 ( 小时 )</td>
+						<td>执行时间 ( 小时 )</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>10:00</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>10:20</td>
+						<td>1</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>10:40</td>
+						<td>0.5</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>10:50</td>
+						<td>0.4</td>
+					</tr>
+				</table>
+				<div class="shop-rating stars">
+					<ul class="rating-level ">
+						<li>
+							<a class="one-star"></a>
+						</li>
+						<li>
+							<a class="two-stars"></a>
+						</li>
+						<li>
+							<a class="three-stars"></a>
+						</li>
+						<li>
+							<a class="four-stars"></a>
+						</li>
+						<li>
+							<a class="five-stars"></a>
+						</li>
+
+					</ul>
+					<p class="difdeg">(难度系数)</p>
+
+				</div>
+
+				<div class="sa-answer">
+
+					<div id="popover-bg"></div>
+					<div id="popover-show">
+						<img id="preview-large" src="" style="display: block; width: 100%; height: 100%;">
+					</div>
+
+					<div id="localImag"><img id="preview" style=" width: 50px; height: 60px;"></div>
+				
+					<a href="javascript:;" class="file">选择图片
+						<input type="file" name="file" id="doc" onchange="javascript:setImagePreview();">
+					</a>
+					<textarea id="textarea" rows="6" placeholder="此处作答..."></textarea>
+
+				</div>
+		</div>
+
+		<div class="ex-sa ex">
+			<p class="stem"><span class="question-id">1、</span>请概述高级调度、低级调度的主要任务是什么？为什么要引入中级调度？</p>
+				<div class="shop-rating stars">
+					<ul class="rating-level ">
+						<li>
+							<a class="one-star"></a>
+						</li>
+						<li>
+							<a class="two-stars"></a>
+						</li>
+						<li>
+							<a class="three-stars"></a>
+						</li>
+						<li>
+							<a class="four-stars"></a>
+						</li>
+						<li>
+							<a class="five-stars"></a>
+						</li>
+
+					</ul>
+					<p class="difdeg">(难度系数)</p>
+
+				</div>
+
+				<div class="sa-answer">
+
+					<textarea id="textarea" rows="6" placeholder="此处作答..."></textarea>
+
+				</div>
+		</div>
+
+		<div class="ex-fb ex">
+			<p class="stem"><span class="question-id">1、</span>进程调度的职责是按给定的__1__ 从__2__ 中选择一个进程，让它占用处理器。</p>
+				<div class="shop-rating stars">
+					<ul class="rating-level ">
+						<li>
+							<a class="one-star"></a>
+						</li>
+						<li>
+							<a class="two-stars"></a>
+						</li>
+						<li>
+							<a class="three-stars"></a>
+						</li>
+						<li>
+							<a class="four-stars"></a>
+						</li>
+						<li>
+							<a class="five-stars"></a>
+						</li>
+
+					</ul>
+					<p class="difdeg">(难度系数)</p>
+
+				</div>
+
+				<div class="blank">
+
+					<div class="mui-input-row">
+						<label>(1)</label>
+						<input type="text" class="mui-input-clear" placeholder="此处填写答案">
+					</div>
+					<div class="mui-input-row">
+						<label>(2)</label>
+						<input type="text" class="mui-input-clear" placeholder="此处填写答案">
+					</div>
+				</div>
+		</div>
+		<div class="ex-judge ex">
+			<p class="stem"><span class="question-id">1、</span>所谓多道程序设计，即指每一时刻有若干个进程在执行。</p>			
+				<div class="shop-rating stars">
+				<ul class="rating-level ">
+					<li>
+						<a class="one-star"></a>
+					</li>
+					<li>
+						<a class="two-stars"></a>
+					</li>
+					<li>
+						<a class="three-stars"></a>
+					</li>
+					<li>
+						<a class="four-stars"></a>
+					</li>
+					<li>
+						<a class="five-stars"></a>
+					</li>
+
+				</ul>
+				<p class="difdeg">(难度系数)</p>
+			</div>
+			
+			<ul class="choice">
+				<li><input type="radio" name="choice" id="judge-1-T" />
+					<label for="judge-1-T" class="check-box"></label> 正确</li>
+				<li>
+					<input type="radio" name="choice" id="judge-1-F" />
+					<label for="judge-1-F" class="check-box"></label> 错误</li>
+				</ul>
+
+		</div>
+		
+		<div class="ex-ss">
+			<p class="stem"><span class="question-id">1、</span>为了使系统中所有的用户都能得到及时的响应，该操作系统应该是 ( )</p>
+			<div class="shop-rating  stars">
+				<ul class="rating-level">
+					<li>
+						<a class="one-star"></a>
+					</li>
+					<li>
+						<a class="two-stars"></a>
+					</li>
+					<li>
+						<a class="three-stars"></a>
+					</li>
+					<li>
+						<a class="four-stars"></a>
+					</li>
+					<li>
+						<a class="five-stars"></a>
+					</li>
+
+				</ul>
+				<p class="difdeg">(难度系数)</p>
+			</div>
+			
+			<ul class="choice">
+				<li><input type="radio" name="choice" id="ss-1-A" />
+					<label for="ss-1-A" class="check-box"></label> A.多道批处理系统</li>
+				<li>
+					<input type="radio" name="choice" id="ss-1-B" />
+					<label for="ss-1-B" class="check-box"></label> B.分时系统</li>
+				<li>
+					<input type="radio" name="choice" id="ss-1-C" />
+					<label for="ss-1-C" class="check-box"></label> C.实时系统</li>
+				
+				<li>
+					<input type="radio" name="choice" id="ss-1-D" />
+					<label for="ss-1-D" class="check-box"></label> D.网络系统</li> 
+			</ul>
+
+		</div>-->
+
+		<div id="pageNag">
+			<button type="button" id="preBut" class="button pure-button" style="background: #93B230"> &lt;&lt;prev </button>
+			<button type="button" id="nextBut" class="button pure-button" style="background: #93B230">next>></button>
+		</div>
+
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<!--<script src="js/ExJsonForTest.js" type="text/javascript" charset="utf-8"></script>-->
+		<script>
+			document.querySelector(".nvbt").onclick = function() {
+				//alert("go");
+				window.history.go(-1);
+			}
+
+			function getExSucHandle() {
+				//var stuNo="11111111111";
+				var questionId = 1,
+					exHtmls = [],
+					exDifdegs = [],
+					detailHtmls = [],
+					userAnswers = [],
+					evaluations = [],
+					userAnsHtml = [];
+				var starClasses = [".one-star", ".two-stars", ".three-stars", ".four-stars", ".five-stars"];
+				for(var i in exJsons) {
+
+					var ex = exJsons[i];
+
+					if("ex_ss" == ex.type) {
+
+						var opt = ex.option.split("&");
+						var ss = ex;
+						var ssHtml = '<div class="ex-ss">' +
+							'<p class="stem"><span class="question-id">' + questionId + '、</span>' + ss.stem + '</p>' +
+							'<div class="shop-rating  stars">' +
+							'<ul class="rating-level">' +
+							'<li><a class="one-star"></a></li>' +
+							'<li><a class="two-stars"></a></li>' +
+							'<li><a class="three-stars"></a></li>' +
+							'<li><a class="four-stars"></a></li>' +
+							'<li><a class="five-stars"></a></li>' +
+							'</ul>' +
+							'<p class="difdeg">(难度系数)</p>' +
+							'</div>' +
+
+							'<ul class="choice">' +
+							'<li><input type="radio" value="A" name="choice" id="ss-' + questionId + '-A" />' +
+							'<label for="ss-' + questionId + '-A" class="check-box"></label>' + opt[0] + '</li>' +
+							'<li>' +
+							'<input type="radio" value="B"  name="choice" id="ss-' + questionId + '-B" />' +
+							'<label for="ss-' + questionId + '-B" class="check-box"></label> ' + opt[1] + '</li>' +
+							'<li>' +
+							'<input type="radio" value="C" name="choice" id="ss-' + questionId + '-C" />' +
+							'<label for="ss-' + questionId + '-C" class="check-box"></label> ' + opt[2] + '</li>' +
+
+							'<li>' +
+							'<input type="radio" value="D" name="choice" id="ss-' + questionId + '-D" />' +
+							'<label for="ss-' + questionId + '-D" class="check-box"></label> ' + opt[3] + '</li> ' +
+							'</ul>' +
+
+							'</div>';
+						//alert("fin");
+
+						/*document.querySelector(".container-ex").innerHTML=ssHtml;
+		document.querySelector(starClasses[ss.difdeg-1]).style.backgroundPosition='0 -28px';
+*/
+						questionId++;
+						exHtmls.push(ssHtml);
+						exDifdegs.push(ss.difdeg);
+						//	resJson.push(new ExResult("ex_ss", ss.id));
+						//resJson[0].userAnswer="B";
+						//console.log(resJson[0]);
+					} else if('ex_judge' == ex.type) {
+
+						var jd = ex;
+						var jdHtml = '<div class="ex-judge ex">' +
+							'<p class="stem"><span class="question-id">' + questionId + '、</span>' + jd.stem + '</p>' +
+							'<div class="shop-rating  stars">' +
+							'<ul class="rating-level">' +
+							'<li><a class="one-star"></a></li>' +
+							'<li><a class="two-stars"></a></li>' +
+							'<li><a class="three-stars"></a></li>' +
+							'<li><a class="four-stars"></a></li>' +
+							'<li><a class="five-stars"></a></li>' +
+							'</ul>' +
+							'<p class="difdeg">(难度系数)</p>' +
+							'</div>' +
+
+							'<ul class="choice">' +
+							'<li><input type="radio" value="T" name="choice" id="judge-' + questionId + '-T" />' +
+							'<label for="judge-' + questionId + '-T" class="check-box"></label> 正确</li>' +
+							'<li>' +
+							'<input type="radio"  value="F" name="choice" id="judge-' + questionId + '-F" />' +
+							'<label for="judge-' + questionId + '-F" class="check-box"></label> 错误</li>' +
+							'</ul>' +
+
+							'</div>';
+						//document.querySelector(".container-ex").innerHTML=jdHtml;
+						//document.querySelector(starClasses[jd.difdeg-1]).style.backgroundPosition='0 -28px';
+						questionId++;
+						exHtmls.push(jdHtml);
+						exDifdegs.push(jd.difdeg);
+					} else if('ex_fb' == ex.type) {
+
+						var fb = ex;
+						var fbHtml = '<div class="ex-fb ex">' +
+							'<p class="stem"><span class="question-id">' + questionId + '、</span>' + fb.stem + '</p>' +
+							'<div class="shop-rating  stars">' +
+							'<ul class="rating-level">' +
+							'<li><a class="one-star"></a></li>' +
+							'<li><a class="two-stars"></a></li>' +
+							'<li><a class="three-stars"></a></li>' +
+							'<li><a class="four-stars"></a></li>' +
+							'<li><a class="five-stars"></a></li>' +
+							'</ul>' +
+							'<p class="difdeg">(难度系数)</p>' +
+							'</div>' +
+
+							'<div class="blank">';
+
+						//计算空格个数
+						var s = fb.stem;
+						var  re  =  new  RegExp("___", "g");
+						var  arr  =  s.match(re);
+						var blankLen = arr.length;
+
+						for(var i = 1; i <= blankLen; i++) {
+							var blank = '<div class="mui-input-row">' +
+								'<label>(' + i + ')</label>' +
+								'<input type="text" class="mui-input-clear" placeholder="此处填写答案">' +
+								'</div>';
+							fbHtml += blank;
+						}
+
+						fbHtml += '</div></div>';
+						/*document.querySelector(".container-ex").innerHTML=fbHtml;
+		document.querySelector(starClasses[fb.difdeg-1]).style.backgroundPosition='0 -28px';
+*/
+						questionId++;
+						exHtmls.push(fbHtml);
+						exDifdegs.push(fb.difdeg);
+
+					} else if('ex_sa' == ex.type) {
+
+						var sa = ex;
+						var saHtml = '<div class="ex-sa ex">' +
+							'<p class="stem"><span class="question-id">' + questionId + '、</span>' + sa.stem + '</p>' +
+							'<div class="shop-rating  stars">' +
+							'<ul class="rating-level">' +
+							'<li><a class="one-star"></a></li>' +
+							'<li><a class="two-stars"></a></li>' +
+							'<li><a class="three-stars"></a></li>' +
+							'<li><a class="four-stars"></a></li>' +
+							'<li><a class="five-stars"></a></li>' +
+							'</ul>' +
+							'<p class="difdeg">(难度系数)</p>' +
+							'</div>' +
+
+							'<div class="sa-answer">' +
+
+							'<textarea id="textarea" rows="6" placeholder="此处作答..."></textarea>' +
+
+							'</div>' +
+							'</div>';
+
+						/*  document.querySelector(".container-ex").innerHTML=saHtml;
+		document.querySelector(starClasses[sa.difdeg-1]).style.backgroundPosition='0 -28px';
+*/
+						questionId++;
+						exHtmls.push(saHtml);
+						exDifdegs.push(sa.difdeg);
+					} else if('ex_calc' == ex.type) {
+
+						var ca = ex;
+						var caHtml = '<div class="ex-calc ex">' +
+							'<p class="stem"><span class="question-id">' + questionId + '、</span>' + ca.stem + '</p>' +
+							'<div class="shop-rating  stars">' +
+							'<ul class="rating-level">' +
+							'<li><a class="one-star"></a></li>' +
+							'<li><a class="two-stars"></a></li>' +
+							'<li><a class="three-stars"></a></li>' +
+							'<li><a class="four-stars"></a></li>' +
+							'<li><a class="five-stars"></a></li>' +
+							'</ul>' +
+							'<p class="difdeg">(难度系数)</p>' +
+							'</div>' +
+
+							'<div class="sa-answer">' +
+
+							'<div id="popover-bg"></div>' +
+							'<div id="popover-show">' +
+							'<img id="preview-large" src="" style="display: block; width: 100%; height: 100%;">' +
+							'</div>' +
+
+							'<div id="localImag"><img id="preview" style=" width: 50px; height: 60px;"></div>' +
+
+							'<form action="/osbank/UploadHandleServlet" target="_self" enctype="multipart/form-data" method="post">' +
+
+							'<input type="hidden" name="stuNo" value="' + stuNo + '" />' +
+							'<input type="hidden" name="exType" value="ex_calc" />' +
+							'<input type="hidden" name="exId" value="' + ca.id + '" />' +
+							'<a href="javascript:;" class="file">选择图片' +
+							'<input type="file" name="file" id="doc" onchange="javascript:setImagePreview();">' +
+							'</a>' +
+
+							'</form>' +
+							'<textarea id="textarea" rows="6" placeholder="此处作答..."></textarea>' +
+
+							'</div>' +
+							'</div>'
+							/* document.querySelector(".container-ex").innerHTML=caHtml;
+		document.querySelector(starClasses[ca.difdeg-1]).style.backgroundPosition='0 -28px';
+*/
+						questionId++;
+						exHtmls.push(caHtml);
+						exDifdegs.push(ca.difdeg);
+					}
+
+				}
+				//显示第一题
+				document.querySelector(".container-ex").innerHTML = exHtmls[firstId];
+				document.querySelector(starClasses[exDifdegs[firstId] - 1]).style.backgroundPosition = '0 -28px';
+
+				//处理pre,next
+				var nowId = firstId;
+				document.getElementById('preBut').addEventListener('click', function() {
+					if(nowId == firstId) alert("前面没题了");
+					else {
+
+						//console.log(nowId+"  "+firstId);
+						nowId--;
+						console.log(typeof userAnsHtml[nowId]);
+						document.querySelector(".container-ex").innerHTML = exHtmls[nowId] + ((typeof userAnswers[nowId] == "undefined") ? "" : userAnsHtml[nowId]);
+						document.querySelector(starClasses[exDifdegs[nowId] - 1]).style.backgroundPosition = '0 -28px';
+
+					}
+				}, false);
+				document.getElementById('nextBut').addEventListener('click', function() {
+
+					//if(document.querySelector("#nextBut").innerHTML == "提交") {
+						//alert("submit");
+
+						/*var fnhFlag=true,tipStr="";
+						//if(userAnswers.length=0)fnhFlag=false;
+						for(var i=0;i<exJsons.length;i++){
+							if(typeof userAnswers[i]=="undefined") {
+								fnhFlag=false;
+								tipStr+=((i+1)+",")
+							}
+						}
+						//console.log(userAnswers);
+						//console.log(fnhFlag);
+						var smtInfo;//提交信息
+						if(!fnhFlag){
+							smtInfo=confirm("以下题目尚未作答，你确定提交吗? ? \n"+tipStr.substring(0,tipStr.length-1));
+						}
+						console.log("确认提交："+smtInfo);
+						if(smtInfo){*/
+						/*document.querySelector("#preBut").style.display = "none";
+						getUserAnswersAndGenDetailHtmls(nowId);
+						//document.querySelector(".container-ex").innerHTML = "";
+						console.log(userAnswers);
+
+						document.querySelector("#nextBut").innerHTML = "返回";
+						document.querySelector("#nextBut").onclick = function() {
+							window.history.go(-1);
+						}
+
+						//生成resJsons
+						genUserEx();*/
+						//console.log(resJsons);
+						//发送答题详情到后台
+						//updateUserEx();
+						// updateOneUserEx (nowId);
+						//	}
+
+					//} else {
+                          //最后一题
+						if(nowId == (exHtmls.length - 1)) {
+							getUserAnswersAndGenDetailHtmls(nowId);
+							//document.querySelector("#nextBut").innerHTML = "提交";
+							//document.querySelector("#preBut").style.display = "none";
+							//nowId++;
+							document.querySelector(".container-ex").innerHTML = exHtmls[nowId] + ((typeof userAnswers[nowId] == "undefined") ? "" : userAnsHtml[nowId]);
+							document.querySelector(starClasses[exDifdegs[nowId] - 1]).style.backgroundPosition = '0 -28px';
+
+							//updateOneUserEx (nowId-1);
+
+							e = exJsons[nowId];
+							ev = (evaluations[nowId] == undefined) ? "" : evaluations[nowId];
+							var ue = new User_Ex(stuNo, e.type, e.id, userAnswers[nowId], ev);
+							var ueStr = JSON.stringify(ue);
+							var finished = false;
+							if(nowId == exJsons.length - 1) finished = true;
+							var postUrl = "/osbank/UpdateOneUserExServlet" + "?data=" + ueStr + "&taskId=" + taskId + "&finishedId=" + nowId + "&finished=" + finished;
+							xhr(postUrl,
+								false,
+								function() {
+									document.querySelector(".container-ex").innerHTML = "";
+									document.querySelector("#preBut").style.display = "none";
+									document.querySelector("#nextBut").style.display = "none";
+									alert("此作业已完成!");
+								},
+								function() {
+									alert("此题提交失败，请检查网络连接。。。")
+								}
+
+							);
+
+						} else {
+							getUserAnswersAndGenDetailHtmls(nowId);
+							nowId++;
+							document.querySelector(".container-ex").innerHTML = exHtmls[nowId] + ((typeof userAnswers[nowId] == "undefined") ? "" : userAnsHtml[nowId]);
+							document.querySelector(starClasses[exDifdegs[nowId] - 1]).style.backgroundPosition = '0 -28px';
+                           updateOneUserEx(nowId - 1);
+						}
+
+					
+
+					
+
+					//var 
+				}, false);
+				//更新一条记录User_Ex至后台
+				function updateOneUserEx(nowId) {
+					e = exJsons[nowId];
+					ev = (evaluations[nowId] == undefined) ? "" : evaluations[nowId];
+					var ue = new User_Ex(stuNo, e.type, e.id, userAnswers[nowId], ev);
+					var ueStr = JSON.stringify(ue);
+					var finished = false;
+					if(nowId == exJsons.length - 1) finished = true;
+					var postUrl = "/osbank/UpdateOneUserExServlet" + "?data=" + ueStr + "&taskId=" + taskId + "&finishedId=" + nowId + "&finished=" + finished;
+					xhr(postUrl,
+						false,
+						function() {
+							console.log("sendsuccess!");
+						},
+						function() {
+							alert("此题提交失败，请检查网络连接。。。")
+						}
+
+					);
+				}
+				// 生成用户答案html 便于用户点击上一题时查看 即赋值给userAnsHtml,userAnswers
+				function getUserAnswersAndGenDetailHtmls(exId) {
+					switch(exJsons[exId].type) {
+						case "ex_ss":
+						case "ex_judge":
+							{
+
+								//userAnswers[exId] = ""; //如果没有选择 答案赋值为“”
+								var chkObjs = document.getElementsByName("choice");
+								for(var i = 0; i < chkObjs.length; i++) {
+									if(chkObjs[i].checked) {
+										userAnswers[exId] = chkObjs[i].value;
+										//console.log(exId + ":" + userAnswers[exId]);
+									}
+								}
+
+								var iconClass = (userAnswers[exId] == exJsons[exId].answer) ? "ok" : "remove";
+								evaluations[exId] = (iconClass == "ok") ? "正确" : "错误";
+								var exHtml = '<p> 你的答案：<span>' + userAnswers[exId];
+
+								// if(typeof userAnsHtml[exId]=="undefined")
+								userAnsHtml[exId] = exHtml;
+
+								break;
+							}
+						case "ex_fb":
+							{
+								var blanks = document.querySelectorAll(".mui-input-clear");
+								var ansJson = exJsons[exId].answer;
+
+								var unorder = ansJson.unordered;
+								var exHtml = "";
+
+								var jdstr = "";
+								// for(var i=0;i<blanks.length;i++) jdstr+=blanks[i].value;
+
+								//组合用户所填的
+								//如果答案中不存在无序项
+
+								if(unorder == null) {
+									var bans = [];
+									for(var key in ansJson) {
+
+										bans[parseInt(key) - 1] = ansJson[key];
+									}
+									var userAns = [];
+                                    var jdVal=true;//所有空填对才算正确 用于统计此题正确率
+									for(var i = 0; i < blanks.length; i++) {
+										if(blanks[i].value != "") {
+											var iconClass, referenceStr = "";
+											userAns.push(blanks[i].value);
+
+											if(typeof bans[i] == "object") { //答案为数组
+												iconClass = "remove";
+												for(var j in bans[i]) {
+
+													if(bans[i][j] == blanks[i].value) {
+														iconClass = "ok";
+													}
+													referenceStr += (bans[i][j] + '/')
+												}
+												if(iconClass!="ok") jdVal=false;
+												referenceStr = referenceStr.substring(0, referenceStr.length - 1); //去除最后一个/
+											} else if(typeof bans[i] == "string") {
+												iconClass = (blanks[i].value == bans[i]) ? "ok" : "remove";
+												referenceStr = bans[i];
+												if(iconClass!="ok") jdVal=false;
+											}
+											//evaluations[exId] = (iconClass == "ok") ? "正确" : "错误";
+											var item = '<p> 你的答案：<span>' + blanks[i].value;
+
+											exHtml += item;
+										}else{//此空未作答
+											jdVal=false;
+										}
+									}
+									//如果用户所填不为空
+
+									//console.log(userAns);
+									//console.log(userAns.length);
+									//console.log(jdVal)
+									evaluations[exId] =jdVal?"正确":"错误";
+									//console.log(evaluations[exId]);
+									if(userAns.length > 0) {
+										userAnswers[exId] = userAns.toString(); //数组[ , , ]
+										//数组类型导致Gson解析报如下错误：
+										//com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected a string but was BEGIN_ARRAY at line 1 column 560 path $[6].answer
+										//故改为toString();
+
+										//console.log(userAnswers[exId]);
+
+										userAnsHtml[exId] = exHtml;
+									}
+
+								} else { //答案无序
+									//空全填对才算正确,否则错误
+									var allAnswers = getAllAnswers(unorder);
+									//console.log(allAnswers);
+
+									var iconClass = "remove",
+										integrateStr = "",
+										showStr = "",
+										userAns = []; //用户答案组合在一起
+
+									var jdstr = "";
+									for(var i = 0; i < blanks.length; i++) jdstr += blanks[i].value;
+
+									if(jdstr != "") { ///如果用户所填答案不为空 进行下一步
+
+										for(var i = 0; i < blanks.length; i++) {
+
+											userAns.push(blanks[i].value); //= ;
+											integrateStr += blanks[i].value;
+											showStr += (blanks[i].value + " ");
+										}
+
+										for(var i in allAnswers) {
+											if(integrateStr == allAnswers[i])
+												iconClass = "ok";
+										}
+										evaluations[exId] = (iconClass == "ok") ? "正确" : "错误";
+
+										var item = '<p> 你的答案：<span>' + showStr;
+
+										exHtml += item;
+										userAnswers[exId] = userAns.toString();
+										//userAnswers[exId] = userAns; //用户答案组合成数组[ , , ]
+										//console.log(userAnswers[exId]);
+
+										userAnsHtml[exId] = exHtml;
+
+									}
+									
+								}
+								//console.log(userAnswers[exId]);
+                               // console.log(evaluations[exId] );
+								break;
+							}
+						case "ex_sa":
+							{
+								if(document.querySelector("#textarea").value != "") {
+									userAnswers[exId] = document.querySelector("#textarea").value;
+
+									var exHtml = '<p> 你的答案：<span>' + userAnswers[exId];
+
+									userAnsHtml[exId] = exHtml;
+								}
+								break;
+							}
+						case "ex_calc":
+							{
+								//上传图片未处理
+
+								if(document.querySelector("#textarea").value != "") {
+									userAnswers[exId] = document.querySelector("#textarea").value;
+
+									var exHtml = '<p> 你的答案：<span>' + userAnswers[exId];
+
+									userAnsHtml[exId] = exHtml;
+
+								}
+								$('form').ajaxSubmit(); //以ajax方式提交表单 防止页面跳转
+								return false; //
+								break;
+							}
+
+					}
+				}
+				//fu
+
+				function getAllAnswers(answers) {
+					var len = answers.length;
+
+					var permuAns = [],
+						tmpAns = [],
+						mark = [];
+
+					for(var j = 0; j < len; j++) mark[j] = 0;
+
+					function permutation(cur)
+
+					{
+						if(cur == len) {
+							var tmp = "";
+							for(var i = 0; i < len; i++) tmp += tmpAns[i];
+							//console.log(tmp);
+							permuAns.push(tmp);
+						}
+						for(var i = 0; i < len; i++) {
+							if(!mark[i]) tmpAns[cur] = answers[i], mark[i] = 1, permutation(cur + 1), mark[i] = 0;
+
+						}
+					}
+
+					permutation(0);
+
+					return permuAns;
+				}
+
+				function User_Ex(u, et, ei, an, ev) {
+					this.userId = u;
+					this.exType = et;
+					this.exId = ei;
+					this.answer = an;
+					this.evaluation = ev;
+				}
+				var resJsons = [];
+				//赋值给resJsons;
+				function genUserEx() {
+					for(var i = 0; i < exJsons.length; i++) {
+						e = exJsons[i];
+						ev = (evaluations[i] == undefined) ? "" : evaluations[i];
+						var ue = new User_Ex(stuNo, e.type, e.id, userAnswers[i], ev);
+						resJsons.push(ue);
+					}
+
+				}
+
+				function updateUserEx() {
+
+					var resStr = "[";
+					for(var i = 0; i < resJsons.length - 1; i++) {
+						var re = resJsons[i];
+						resStr += (JSON.stringify(re) + ",");
+					}
+					resStr += JSON.stringify(resJsons[resJsons.length - 1]);
+					resStr += "]";
+
+					//	console.log("resStr:" + resStr);
+					var postUrl = "/osbank/UpdateUserExServlet" + "?data=" + resStr + "&taskId=" + taskId;
+					xhr(postUrl,
+						false,
+						function() {
+							console.log("sendsuccess!");
+						},
+						function() {
+							console.log("fail!")
+						}
+
+					);
+				}
+
+			}
+			//getExSucHandle();
+		</script>
+		<script>
+			/*var stuNo="11111111111";
+			var firstId=0;*/
+			//var taskI
+			var urlinfo = decodeURI(window.location.href);
+			//获取学号
+			var info = urlinfo.split("?")[1];
+			var stuNo = info.split("&")[0].split("=")[1];
+			var exJstr = info.split("&")[1].split("=")[1];
+			var taskId = info.split("&")[2].split("=")[1];
+			var firstId = parseInt(info.split("&")[3].split("=")[1]);
+
+			//var exJsons;
+            //getExSucHandle();
+			function askExSuc(resJson) {
+				exJsons = resJson.data;
+
+				getExSucHandle();
+			}
+
+			function askExFail() {
+				alert("获取题目失败！！");
+			}
+			var postUrl = "/osbank/AskExServlet?data=" + exJstr;
+			xhr(postUrl, true, askExSuc, askExFail);
+		</script>
+	</body>
+
+</html>
